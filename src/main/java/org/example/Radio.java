@@ -67,7 +67,7 @@ public class Radio {
 
     public void prevVolume() {
         if (currentVolumeRadio != 0) {
-            currentVolumeRadio++;
+            currentVolumeRadio--;
         } else {
             currentVolumeRadio = 0;
         }
