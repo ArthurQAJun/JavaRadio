@@ -41,7 +41,7 @@ public class RadioTest {
         Radio rad = new Radio();
         rad.SetMaxVolumeRadio();
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolumeRadio();
         Assertions.assertEquals(expected, actual);
     }
@@ -49,11 +49,11 @@ public class RadioTest {
     @Test
     public void ShouldTestNextVolume() {
         Radio rad = new Radio();
-        rad.setCurrentVolumeRadio(10);
+        rad.setCurrentVolumeRadio(100);
 
         rad.nextVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolumeRadio();
         Assertions.assertEquals(expected, actual);
     }
@@ -93,6 +93,7 @@ public class RadioTest {
         int actual = rad.getCurrentNumberStationRadio();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void ShouldTestVolumeStationBelowMax() {
         Radio rad = new Radio();
@@ -102,15 +103,17 @@ public class RadioTest {
         int actual = rad.getCurrentVolumeRadio();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void ShouldTestVolumeStationAboveMax() {
         Radio rad = new Radio();
-        rad.setCurrentVolumeRadio(11);
+        rad.setCurrentVolumeRadio(101);
 
         int expected = 0;
         int actual = rad.getCurrentVolumeRadio();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void ShouldTestNextVolumeInRange() {
         Radio rad = new Radio();
@@ -122,6 +125,7 @@ public class RadioTest {
         int actual = rad.getCurrentVolumeRadio();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void ShouldTestPrevVolumeInRange() {
         Radio rad = new Radio();
@@ -133,6 +137,7 @@ public class RadioTest {
         int actual = rad.getCurrentVolumeRadio();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void ShouldTestNextStationInRange() {
         Radio rad = new Radio();
@@ -144,6 +149,7 @@ public class RadioTest {
         int actual = rad.getCurrentNumberStationRadio();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void ShouldTestPrevStationZero() {
         Radio rad = new Radio();
@@ -151,10 +157,11 @@ public class RadioTest {
 
         rad.prevStation();
 
-        int expected = 0;
+        int expected = 9;
         int actual = rad.getCurrentNumberStationRadio();
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
     public void ShouldTestNumberStationAboveMax() {
         Radio rad = new Radio();
@@ -166,6 +173,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
 
     }
+
     @Test
     public void ShouldTestNumberStationBelowMax() {
         Radio rad = new Radio();
@@ -176,5 +184,53 @@ public class RadioTest {
         int actual = rad.getCurrentNumberStationRadio();
         Assertions.assertEquals(expected, actual);
 
+    }
+
+    @Test
+    public void ShouldTestConstructorValidValues() {
+        Radio rad = new Radio(30);
+
+        rad.setCurrentNumberStationRadio(5);
+
+        int actual = rad.getCurrentNumberStationRadio();
+        int expected = 5;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void ShouldTestConstructorLimitValues0() {
+        Radio rad = new Radio(30);
+
+        rad.setCurrentNumberStationRadio(0);
+
+        int actual = rad.getCurrentNumberStationRadio();
+        int expected = 0;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void ShouldTestConstructorLimitValues1() {
+        Radio rad = new Radio(30);
+
+        rad.setCurrentNumberStationRadio(1);
+
+        int actual = rad.getCurrentNumberStationRadio();
+        int expected = 1;
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void ShouldTestConstructorLimitValues29() {
+        Radio rad = new Radio(30);
+
+        rad.setCurrentNumberStationRadio(29);
+
+        int actual = rad.getCurrentNumberStationRadio();
+        int expected = 29;
+
+        Assertions.assertEquals(expected, actual);
     }
 }
